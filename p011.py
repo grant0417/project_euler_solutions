@@ -26,41 +26,46 @@ for x in s.split("\n"):
         sl.append(int(y))
     l.append(sl)
 
-def check_r_diagnal(x, y, l): # a diagnal to the south-east
+
+def check_r_diagonal(x, y):  # a diagonal to the south-east
     return l[y][x] * l[y - 1][x + 1] * l[y - 2][x + 2] * l[y - 3][x + 3]
 
-def check_l_diagnal(x, y, l): #diagnal to the south- west
+
+def check_l_diagonal(x, y):  # diagonal to the south- west
     return l[y][x] * l[y - 1][x - 1] * l[y - 2][x - 2] * l[y - 3][x - 3]
 
-def check_virtical(x, y, l):
+
+def check_vertical(x, y):
     return l[y][x] * l[y - 1][x] * l[y - 2][x] * l[y - 3][x]
 
-def check_horizontal(x, y, l):
+
+def check_horizontal(x, y):
     return l[y][x] * l[y][x + 1] * l[y][x + 2] * l[y][x + 3]
+
 
 largest_product = 0
 
 for x in range(20):
-    for y in range(20-4):
-        v = check_virtical(x, y, l)
+    for y in range(20 - 4):
+        v = check_vertical(x, y)
         if v > largest_product:
             largest_product = v
 
-for x in range(20-4):
+for x in range(20 - 4):
     for y in range(20):
-        v = check_horizontal(x, y, l)
+        v = check_horizontal(x, y)
         if v > largest_product:
             largest_product = v
 
-for x in range(20-4):
-    for y in range(20-4):
-        v = check_r_diagnal(x, y, l)
+for x in range(20 - 4):
+    for y in range(20 - 4):
+        v = check_r_diagonal(x, y)
         if v > largest_product:
             largest_product = v
 
-for x in range(20-4):
-    for y in range(20-4):
-        v = check_l_diagnal(x + 4, y, l)
+for x in range(20 - 4):
+    for y in range(20 - 4):
+        v = check_l_diagonal(x + 4, y)
         if v > largest_product:
             largest_product = v
 
